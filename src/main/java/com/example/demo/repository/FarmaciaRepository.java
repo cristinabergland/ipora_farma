@@ -20,7 +20,6 @@ public interface FarmaciaRepository extends JpaRepository<Farmacia, Long> {
     
     public Farmacia findByEmail(@Param("email")String email);
     
-    
-    
+   
    
 }

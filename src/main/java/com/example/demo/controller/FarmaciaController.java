@@ -129,14 +129,7 @@ public class FarmaciaController {
 
     }
      */
-    @RequestMapping(method = RequestMethod.PUT, value = "/editaadministrador/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity editarAdministrador(@RequestBody Farmacia adm) {
-
-        admnistradorService.editarAdministrador(adm);
-
-        return new ResponseEntity(HttpStatus.CREATED);
-
-    }
+   
     
     
     
@@ -157,20 +150,25 @@ public class FarmaciaController {
     
     
 
-    @RequestMapping(method = RequestMethod.GET, value = "/administrador/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Farmacia> mostraAdministrador(@PathVariable Long id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/administrador", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Farmacia> mostraAdministrador(@RequestHeader HttpHeaders headers) {
 
         Farmacia adm;
         try {
-            adm = admnistradorService.buscaAdministrador(id);
+            adm = admnistradorService.buscaFarmaciaToken(headers);
 
-        } catch (NoSuchElementException e) {
+        } catch (Exception ex) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity(adm, HttpStatus.OK);
     }
 
+    
+    
+    
+    
+    
     @RequestMapping(method = RequestMethod.GET, value = "/administradores", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<FarmaciaDTO>> mostraTodosAdministrador() {
 

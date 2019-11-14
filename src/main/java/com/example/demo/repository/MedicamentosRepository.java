@@ -2,7 +2,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.model.Categoria;
-import com.example.demo.model.Farmacia;
 import com.example.demo.model.Medicamentos;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
